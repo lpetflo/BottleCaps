@@ -2,6 +2,9 @@
 
 The idea behind this app is to maintain a database of all the bottle caps you have collected, and then take a photo of some caps that you have found or someone else has. The app will then compare the photo with the caps in the database and tell you whether or not you already have that cap. 
 
+## Updates
+   - **Dec/2023**: started fork to implement standalone collection application
+
 ## Summary
 
 BottleCaps is an application that uses computer vision _(mainly OpenCV)_ and other algorithms to detect and match bottle caps from a database. Currently, it only works locally, but the plan is to make it work with AWS servers using a lambda function. It employs the following OpenCV methods: __Simple Blob Detector__, __Hough Transform Circles__, and __Scale-Invariant Feature Transform__. Preprocessing is required for each step of the image.

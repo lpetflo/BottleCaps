@@ -76,15 +76,23 @@ def preprocess_image_size(img: np.ndarray) -> np.ndarray:
 
 def detect_caps(img) -> List:
     # Preprocess image
-    img = preprocess_image_size(img)
+    processed_img = preprocess_image_size(img.copy())
 
-    _, avg_size = get_avg_size_all_blobs(img)
+    _, avg_size = get_avg_size_all_blobs(processed_img)
     cropped_images = []
     if avg_size != 0:
-        _, circles = hough_transform_circle(img, avg_size)
+        _, circles = hough_transform_circle(processed_img, avg_size)
         # Get the positions of the rectangles
         rectangles = get_rectangles(circles)
         # Crop the images from the rectangles
-        cropped_images = crop_image_into_rectangles(img, rectangles)
-        # Final dictionary which will contain all the positions and info from the cap
-    return cropped_images
+        cropped_images = crop_image_into_rectangles(processed_img, rectangles)
+
+        # Draw the detected caps on the image
+        for rect in rectangles:
+            x, y, w, h = rect  # Unpacking x, y, width, and height
+            top_left = (x, y)
+            bottom_right = (x + w, y + h)
+            cv2.rectangle(img, top_left, bottom_right, (0, 255, 0), 3)  # Green rectangle with thickness 3
+
+    return cropped_images, img  # Return the cropped images and the marked image
+

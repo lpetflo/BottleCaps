@@ -1,10 +1,10 @@
 import os
+from dotenv import load_dotenv
 from typing import Dict, List
 
 import pinecone
 from keras.applications.resnet import preprocess_input
 import numpy as np
-
 
 def image_to_vector(img, model):
     resized_img = np.resize(img, (224, 224, 3))  # Resize the image to (224, 224)
@@ -15,8 +15,10 @@ def image_to_vector(img, model):
 
 class PineconeContainer:
     def __init__(self):
-        self.api_key = os.environ["API_KEY"]
-        self.env = os.environ["ENV"]
+        # Load environment variables from .env file
+        load_dotenv()
+        self.api_key = os.environ["PINECONE_API_KEY"]
+        self.env = os.environ["PINECONE_ENV"]
         pinecone.init(api_key=self.api_key, environment=self.env)
         self.index = pinecone.Index(index_name='bottle-caps')
 

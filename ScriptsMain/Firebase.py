@@ -12,7 +12,7 @@ BETA_TESTER = {
 
 class Firebase:
     def __init__(self):
-        cred = credentials.Certificate('./ScriptsMain/bottlecaps-keys.json')
+        cred = credentials.Certificate('./ScriptsMain/bottlecaps-lpetflo.json')
         firebase_admin.initialize_app(cred)
         self.bucket = storage.bucket("bottlecaps-85ba4.appspot.com")
         self.users_folder = "users"

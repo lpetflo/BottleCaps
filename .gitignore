@@ -4,6 +4,11 @@ __pycache__/
 .idea
 # C extensions
 *.so
+*.DS_Store
+
+.env
+# venv
+Bottlecaps
 
 # Distribution / packaging
 bin/
@@ -49,4 +54,4 @@ coverage.xml
 /database/*
 /training/*
 img_1.png
-ScriptsMain/bottlecaps-keys.json
+ScriptsMain/bottlecaps-lpetflo.json
